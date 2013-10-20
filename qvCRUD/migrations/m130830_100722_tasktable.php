@@ -5,12 +5,12 @@ class m130830_100722_tasktable extends \yii\db\Migration
 	public function up()
 	{
 		$this->createTable('tbl_task',array(
-				'id'                        => 'INTEGER UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT',
+				'id'              => 'INTEGER UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT',
 				'content'					=> 'TEXT NULL',
 				'status'					=> 'VARCHAR(255) NOT NULL DEFAULT "created"',
-				'creator_id'		        => 'INTEGER UNSIGNED NOT NULL',
-				'time_create'             	=> 'INTEGER',
-				'task_table'				=> 'INTEGER UNSIGNED DEFAULT NULL',
+				'creator_id'		  => 'INTEGER UNSIGNED NOT NULL',
+				'time_create'     => 'INTEGER',
+				'task_table'			=> 'INTEGER UNSIGNED DEFAULT NULL',
 				'task_id'					=> 'INTEGER UNSIGNED DEFAULT NULL',
 		),'CHARACTER SET utf8 COLLATE utf8_bin ENGINE = InnoDB;');
 

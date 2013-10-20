@@ -56,7 +56,7 @@ app\config\AppAsset::register($this);
 
 	//menu items visible for administrator
 	if(Yii::$app->user->isAdmin){
-		$qvMenuAdmin[] = array('label'=>'<i class="icon-file-text"></i> '.Yii::t('app','Documents'),'url' => array('/qvdocs/index'));
+		$qvMenuAdmin[] = array('label'=>'<i class="icon-file-text"></i> '.Yii::t('app','Documents'),'url' => array('/qvdocs/qvdocs/index'));
 		
 		$MenuItems[] = array('label' => '<i class="icon-gears"></i> '.Yii::t('app','QlikView'), 'url' => '','items' => $qvMenuAdmin);
 	};
