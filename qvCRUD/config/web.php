@@ -28,6 +28,9 @@ $config = [
    'revision' => [
       'class' => 'app\modules\revision\Revision',
     ],
+    'qvdocs' => [
+      'class' => 'app\modules\qlikview\qvdocs\qvdocs',
+    ],
   ],
 	'components' => [
 		'request' => [

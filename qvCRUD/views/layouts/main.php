@@ -43,7 +43,6 @@ app\config\AppAsset::register($this);
 	{
 
 		//$subMenuToolbox[] = array('label'=>Yii::t('app','Time Control'),'url' => array('/holiday/indexuser'));
-		$subMenuToolbox[] = array('label'=>Yii::t('app','Time Control'),'url' => array('/timetrack/default/index'));
 		$subMenuToolbox[] = array('label'=>Yii::t('app','Workflow Control'),'url' => array('/workflow'));
 		$subMenuToolbox[] = array('label'=>Yii::t('app','Tasks'),'url' => array('/tasks'));
 
@@ -57,12 +56,8 @@ app\config\AppAsset::register($this);
 
 	//menu items visible for administrator
 	if(Yii::$app->user->isAdmin){
-		$subMenuAdmin[] = array('label'=>Yii::t('app','Locations'),'url' => array('/location/admin'));
-		$subMenuAdmin[] = array('label'=>Yii::t('app','Costcenter'),'url' => array('/costcenter/admin'));
 		$subMenuAdmin[] = array('label'=>Yii::t('app','User'),'url' => array('/user/admin'));
-		$subMenuAdmin[] = array('label'=>Yii::t('app','Controlling'),'url' => array('/controlling/indexadmin'));
-		$subMenuAdmin[] = array('label'=>Yii::t('app','Holiday'),'url' => array('/holiday/index'));
-		$subMenuAdmin[] = array('label'=>Yii::t('app','Content'),'url' => array('/post/indexadmin'));
+		$subMenuAdmin[] = array('label'=>Yii::t('app','Content'),'url' => array('/posts/indexadmin'));
 		$subMenuAdmin[] = array('label'=>Yii::t('app','Revision'),'url' => array('/revision'));
 		$subMenuAdmin[] = array('label'=>Yii::t('app','File Manager'),'url' => array('/site/filemanager'));
 		
@@ -103,7 +98,7 @@ app\config\AppAsset::register($this);
 	<footer class="footer">
 		<div class="container">
 			<p class="pull-left">&copy; Frenzel GmbH <?=date('Y'); ?></p>
-			<p class="pull-right"><?=Yii::powered(); ?></p>
+			<p class="pull-right">philipp@frenzel.net</p>
 		</div>
 	</footer>
 

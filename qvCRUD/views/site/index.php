@@ -13,9 +13,8 @@ $this->title = 'qvCRUD 2.0';
 
 	<div class="widget">
 
-		<p class="lead">You have successfully created your Yii-powered application.</p>
+		<p class="lead">Memory Usage</p>
 
-		<p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
 	</div>
 
 	<div class="body-content">

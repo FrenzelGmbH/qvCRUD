@@ -24,7 +24,7 @@ body {
 }
 
 .footer {
-	border-top: 1px solid #ddd;
+	/*border-top: 1px solid #ddd;*/
 	margin-top: 30px;
 	padding-top: 15px;
 	padding-bottom: 30px;
@@ -40,23 +40,42 @@ body {
 	padding: 14px 24px;
 }
 
+/*Cleaning the breadcrumbs*/
+.breadcrumb {
+    background: transparent;
+}
+
 /*Cleaning the navbar */
 .navbar-inverse {
     background-color: transparent;
-    border-color: #080808;
+    border-color: transparent;
 }
 .navbar-default {
-    background-color: #transparent;
+    background-color: transparent;
     border-color: #E7E7E7;
 }
 
 .navbar-default .navbar-brand {
-    color: #454545;
+    color: #7CFC00;
 }
 
 .navbar-inverse .navbar-nav > li > a {
     color: #cdcdcd;
 }
+
+/*toolbar related styles*/
+
+.toolbarbtn{
+  width: 50px;
+  margin-bottom: 10px;
+}
+
+.pg-sidebar{
+  padding-left: 9px;
+  padding-top: 15px;
+  padding-right: 5px;
+}
+
 
 /*Widget Components*/
 
