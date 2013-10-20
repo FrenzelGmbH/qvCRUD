@@ -21,15 +21,15 @@ $this->title = 'qvCRUD 2.0';
 
 		<div class="row">
 			<div class="col-lg-4">
-				<h2>News</h2>
-				
-				<div class="widget">				
+						
 				<?php
 					echo app\modules\posts\widgets\PortletPosts::widget(array(
 	        		'limit'=>3,
+	        		'contentCssClass'=>'widget',
+	        		'enableAdmin' => false,
 	    		));
 				?>
-				</div>
+
 			</div>
 			<div class="col-lg-4">
 				<h2>Heading</h2>

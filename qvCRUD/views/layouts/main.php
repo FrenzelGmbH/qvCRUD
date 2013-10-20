@@ -56,6 +56,13 @@ app\config\AppAsset::register($this);
 
 	//menu items visible for administrator
 	if(Yii::$app->user->isAdmin){
+		$qvMenuAdmin[] = array('label'=>'<i class="icon-file-text"></i> '.Yii::t('app','Documents'),'url' => array('/qvdocs/index'));
+		
+		$MenuItems[] = array('label' => '<i class="icon-gears"></i> '.Yii::t('app','QlikView'), 'url' => '','items' => $qvMenuAdmin);
+	};
+
+	//menu items visible for administrator
+	if(Yii::$app->user->isAdmin){
 		$subMenuAdmin[] = array('label'=>Yii::t('app','User'),'url' => array('/user/admin'));
 		$subMenuAdmin[] = array('label'=>Yii::t('app','Content'),'url' => array('/posts/indexadmin'));
 		$subMenuAdmin[] = array('label'=>Yii::t('app','Revision'),'url' => array('/revision'));
@@ -89,15 +96,20 @@ app\config\AppAsset::register($this);
 	?>
 
 	<div class="container">
-		<?=Breadcrumbs::widget([
-			'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-		]); ?>
 		<?=$content; ?>
 	</div>
 
 	<footer class="footer">
 		<div class="container">
-			<p class="pull-left">&copy; Frenzel GmbH <?=date('Y'); ?></p>
+			<p>
+				&copy; Frenzel GmbH <?=date('Y'); ?>
+				<br>
+			<address>
+				Hohewartstr.32 <br>
+				70469 Stuttgart - GERMANY
+			</address>
+			</p>
+
 			<p class="pull-right">philipp@frenzel.net</p>
 		</div>
 	</footer>
