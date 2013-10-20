@@ -16,7 +16,21 @@
 	"require": {
 		"php": ">=5.4.0",
 		"yiisoft/yii2": "dev-master",
-		"yiisoft/yii2-composer": "dev-master"
+		"yiisoft/yii2-composer": "dev-master",
+		"yiisoft/yii2-jui" : "dev-master",
+		"philippfrenzel/yiidhtmlx": "dev-master",
+    "philippfrenzel/yiiwymeditor": "dev-master",
+    "philippfrenzel/yii2elfinder": "dev-master",
+    "phpexcel/phpexcel":"*",
+    "phpword/phpword":"*",
+    "phpmailer/phpmailer": "dev-master",
+    "anthonymartin/geo-location": "dev-master",
+    "php-google-maps/php-google-maps": "dev-master",
+    "philippfrenzel/yii2tooltipster": "dev-master",
+    "philippfrenzel/yii2toolbarbutton": "dev-master",
+    "philippfrenzel/yii2-asset-converter": "*",
+    "philippfrenzel/yiijquerytoc": "dev-master",
+    "philippfrenzel/yii2fullcalendar": "dev-master"
 	},
 	"scripts": {
 		"post-create-project-cmd": [

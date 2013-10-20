@@ -3,6 +3,32 @@ $params = require(__DIR__ . '/params.php');
 $config = [
 	'id' => 'qvCRUD',
 	'basePath' => dirname(__DIR__),
+	'modules'=>[
+    'pages' => [
+      'class' => 'app\modules\pages\Pages',
+    ],
+    'posts' => [
+      'class' => 'app\modules\posts\Posts',
+    ],
+    'comments' => [
+			'class' => 'app\modules\comments\Comments'
+		],
+		'workflow' => [
+      'class' => 'app\modules\workflow\Workflow',
+    ],
+   'bikes' => [
+      'class' => 'app\modules\bikes\Bike',
+    ],
+   'tags' => [
+      'class' => 'app\modules\tags\Tag',
+    ],
+   'tasks' => [
+      'class' => 'app\modules\tasks\Task',
+    ],
+   'revision' => [
+      'class' => 'app\modules\revision\Revision',
+    ],
+  ],
 	'components' => [
 		'request' => [
 			'enableCsrfValidation' => true,
