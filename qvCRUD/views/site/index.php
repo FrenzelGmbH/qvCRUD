@@ -2,7 +2,7 @@
 /**
  * @var yii\base\View $this
  */
-$this->title = 'My Yii Application';
+$this->title = 'qvCRUD 2.0';
 ?>
 <div class="site-index">
 

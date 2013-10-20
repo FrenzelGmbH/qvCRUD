@@ -12,6 +12,17 @@ return [
 		'cache' => [
 			'class' => 'yii\caching\FileCache',
 		],
+		'db' => [
+			'class' => 'yii\db\Connection',
+			'dsn' => 'mysql:host=localhost;dbname=qvCRUD',
+      'username' => 'root', 
+      'password' => '',
+      'tablePrefix' => 'tbl_',
+		],
+		'seeder'=>[
+			'class'    =>'app\components\DbFixtureManager',
+			'basePath' => dirname(__DIR__).'/migrations/seed',
+    ],
 		'log' => [
 			'targets' => [
 				[

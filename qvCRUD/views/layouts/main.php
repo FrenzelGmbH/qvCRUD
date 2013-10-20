@@ -22,7 +22,7 @@ app\config\AppAsset::register($this);
 <?php $this->beginBody(); ?>
 	<?php
 		NavBar::begin([
-			'brandLabel' => 'My Company',
+			'brandLabel' => 'qvCRUD',
 			'brandUrl' => Yii::$app->homeUrl,
 			'options' => [
 				'class' => 'navbar-inverse navbar-fixed-top',

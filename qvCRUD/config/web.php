@@ -1,7 +1,7 @@
 <?php
 $params = require(__DIR__ . '/params.php');
 $config = [
-	'id' => 'bootstrap',
+	'id' => 'qvCRUD',
 	'basePath' => dirname(__DIR__),
 	'components' => [
 		'request' => [
@@ -10,7 +10,15 @@ $config = [
 		'cache' => [
 			'class' => 'yii\caching\FileCache',
 		],
+		'db' => [
+			'class' => 'yii\db\Connection',
+			'dsn' => 'mysql:host=localhost;dbname=qvCRUD',
+      'username' => 'root', 
+      'password' => '',
+      'tablePrefix' => 'tbl_',
+		],
 		'user' => [
+			'class' => 'app\components\AppUser',
 			'identityClass' => 'app\models\User',
 		],
 		'errorHandler' => [
