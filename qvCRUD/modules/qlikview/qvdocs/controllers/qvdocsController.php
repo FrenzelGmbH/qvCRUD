@@ -9,6 +9,12 @@ use yii\web\Controller;
 use yii\web\HttpException;
 use yii\web\VerbFilter;
 
+use Gaufrette\Filesystem;
+use Gaufrette\Adapter\Local;
+
+use \XMLReader;
+use \Yii;
+
 /**
  * qvdocsController implements the CRUD actions for qvdocs model.
  */
@@ -55,8 +61,28 @@ class qvdocsController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$model = $this->findModel($id);
+
+		$dirname = sprintf(
+        '%s/Solution Rights-prj',
+        $model->qvPath
+    );
+    $filesystem = new Filesystem(new Local($dirname));    
+    $dirs = $filesystem->listKeys();
+
+    foreach($dirs AS $key => $values){
+    	foreach ($values AS $value){
+    		if($value === Yii::$app->params['QlikViewPrjFile']){
+			    $xml = new XMLReader();
+					$xml->xml($filesystem->read($value));
+					$content = $model::xml2assocpf($xml); 
+    		}
+    	}
+    }  
+
 		return $this->render('view', [
-			'model' => $this->findModel($id),
+			'dirs'  => $content,
+			'model' => $model,
 		]);
 	}
 

@@ -8,7 +8,7 @@ use yii\widgets\Block;
  * @var app\modules\qlikview\qvdocs\models\qvdocs $model
  */
 
-$this->title = 'Create Qvdocs';
+$this->title = 'Create QlikView Document';
 $this->params['breadcrumbs'][] = ['label' => 'Qvdocs', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
