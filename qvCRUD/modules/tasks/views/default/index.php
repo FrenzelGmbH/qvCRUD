@@ -33,23 +33,38 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="module-wsp">
 
-	<h4><?= Html::encode($this->title); ?></h4>
+	<h2><?= Html::encode($this->title); ?></h2>
 
 	<?php //echo $this->render('_search', array('model' => $searchModel)); ?>
 
 	<hr>
-<div class="box bordered">
-	<ul class="list-group">
-		<?php 
-			echo ListView::widget(array(
-						'id'           => 'IndexTaskView',
-						'dataProvider' => $dpTasks,
-						'itemView'     => 'iviews/_view',
-						'layout'     => '<div class="box-header">{summary}</div>{items}{pager}',
-					)
-			);
-		?>
-	</ul>
-</div>
+	<div class="box bordered">
+		<ul class="list-group">
+			<?php 
+				echo ListView::widget(array(
+							'id'           => 'IndexTaskView',
+							'dataProvider' => $dpTasks,
+							'itemView'     => 'iviews/_view',
+							'layout'     => '<div class="box-header">{summary}</div>{items}{pager}',
+						)
+				);
+			?>
+		</ul>
+	</div>
 
 </div>
+
+
+<?php Block::begin(array('id'=>'toolbar')); ?>
+
+  <h4>
+    <i class="icon-hand-down"></i>
+    Hilfe
+  </h4>
+ 
+	<p>
+		Hier sehen Sie eine Liste der Ihnen zugeordneten oder der durch Sie erstellten Aufgaben. Durch anklicken auf "anzeigen" kommen Sie zu den 
+		jeweiligen Details.
+	</p>
+
+<?php Block::end(); ?>

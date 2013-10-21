@@ -37,12 +37,13 @@ class PortletTimetrackAdmin extends Portlet
 		if($this->menuItems==null){
 			$this->menuItems = array();
 			$this->menuItems[] = array('label'=>Yii::t('app','new timetrack entry'),'link'=>Html::url(array('/timetrack/timetrack/create','category'=>Timetable::CAT_TIMETRACK)),'icon'=>'icon-plus');
+			$this->menuItems[] = array('label'=>Yii::t('app','timetrack overview'),'link'=>Html::url(array('/timetrack/default/calendar','category'=>Timetable::CAT_TIMETRACK)),'icon'=>'icon-list-alt');
 			$this->menuItems[] = array('label'=>Yii::t('app','new illness entry'),'link'=>Html::url(array('/timetrack/timetrack/create','category'=>Timetable::CAT_ILLNESS)),'icon'=>'icon-medkit');
 			$this->menuItems[] = array('label'=>Yii::t('app','new holiday entry'),'link'=>Html::url(array('/timetrack/timetrack/create','category'=>Timetable::CAT_HOLIDAY)),'icon'=>'icon-plane');
+			$this->menuItems[] = array('label'=>Yii::t('app','holiday booking overview'),'link'=>Html::url(array('/timetrack/default/calendar','category'=>Timetable::CAT_HOLIDAY_BOOKING)),'icon'=>'icon-list-alt');
 			$this->menuItems[] = array('label'=>Yii::t('app','new wedding entry'),'link'=>Html::url(array('/timetrack/timetrack/create','category'=>Timetable::CAT_WEDDING)),'icon'=>'icon-heart');
 			$this->menuItems[] = array('label'=>Yii::t('app','new movement entry'),'link'=>Html::url(array('/timetrack/timetrack/create','category'=>Timetable::CAT_MOVEMENT)),'icon'=>'icon-archive');
-			$this->menuItems[] = array('label'=>Yii::t('app','new other entry'),'link'=>Html::url(array('/timetrack/timetrack/create','category'=>Timetable::CAT_OTHER)),'icon'=>'icon-question');
-			$this->menuItems[] = array('label'=>Yii::t('app','overview'),'link'=>Html::url(array('/timetrack/timetrack/index')),'icon'=>'icon-list-alt');
+			$this->menuItems[] = array('label'=>Yii::t('app','new other entry'),'link'=>Html::url(array('/timetrack/timetrack/create','category'=>Timetable::CAT_OTHER)),'icon'=>'icon-question');			
 		}
 
 		//here we don't return the view, here we just echo it!

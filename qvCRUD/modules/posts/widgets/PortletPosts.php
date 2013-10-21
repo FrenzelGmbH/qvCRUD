@@ -25,13 +25,17 @@ class PortletPosts extends Portlet
 	public $htmlOptions=array();
 
 	public function init() {
+		if(isset($_GET['tag'])){
+			$this->title = "Posts <small>Tagged with <i>".Html::encode($_GET['tag'])."</i></small>";
+		}
 		parent::init();
 	}
 
 	protected function renderContent()
 	{
-		if(isset($_GET['tag']))
+		if(isset($_GET['tag'])){
 			$query = Post::getAdapterForPosts($this->limit,$_GET['tag']);
+		}
 		else
 			$query = Post::getAdapterForPosts($this->limit);
 
@@ -54,7 +58,7 @@ class PortletPosts extends Portlet
 		if($this->title!==null)
 		{
 			$this->title = Yii::t('app',$this->title);
-			echo "<div class='panel-heading'><h3 class=\"{$this->titleCssClass}\"><i class='icon-info'></i> {$this->title}</h3>\n</div>\n";
+			echo "<h2 class=\"{$this->titleCssClass}\"><i class='icon-info'></i> {$this->title}</h2>\n";
 		}
 	}
 }

@@ -51,7 +51,17 @@ $this->params['breadcrumbs'][] = 'Update';
     Der Urlaubsantrag wird in einem für das Unternehmen definierten Ablaufprozess bearbeitet. Sie werden daher
     in den kommenden Stunden/Tagen über den Verlauf oder benötigte Aktionen <b>per Mail informiert</b>.
   </p>
+<?php elseif($model->category == $model::CAT_TIMETRACK): ?>
+  <p>
+    Im folgenden Formblatt können sie den Tag auswählen, für den Sie die Arbeitszeit erfassen möchten. Nachdem Sie auf
+    speichern/erzeugen geklickt haben, kommen Sie auf die Kalendersicht und können dort alle ihre Arbeitszeiteinträge sichten.
+  </p>
+  <p>
+    Die Arbeitszeitauswertung steht nur Ihnen und ihrem Vorgestzten zur Verfügung. Bitte beachten Sie, dass sie gesetzlich zur
+    Führung ihrer Arbeitszeitstatitik verpflichtet sind. (In erster Linie zu Ihrer Sicherheit!)
+  </p>
 <?php endif; ?>
+
 
 <?php Block::end(); ?>
 

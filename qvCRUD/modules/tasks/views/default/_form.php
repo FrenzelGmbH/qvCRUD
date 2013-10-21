@@ -4,7 +4,6 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 use yii\widgets\Block;
-use app\modules\tasks\widgets\PortletSidemenu;
 
 use app\modules\workflow\models\Workflow;
 
@@ -21,11 +20,12 @@ use app\modules\workflow\widgets\PortletWorkflowLog;
 	<?php 
 
 	$sideMenu = array();
-	$sideMenu[] = array('decoration'=>'sticker sticker-color-yellow','icon'=>'icon-arrow-left','label'=>Yii::t('app','Home'),'link'=>Html::url(array('/site/index')));
-	$sideMenu[] = array('decoration'=>'sticker sticker-color-green','icon'=>'icon-arrow-left','label'=>Yii::t('app','Overview'),'link'=>Html::url(array('/tasks/default/index')));
+	$sideMenu[] = array('decoration'=>'sticker sticker-color-yellow','icon'=>'icon-home','label'=>Yii::t('app','Home'),'link'=>Html::url(array('/site/index')));
+	$sideMenu[] = array('decoration'=>'sticker sticker-color-green','icon'=>'icon-list-alt','label'=>Yii::t('app','Overview'),'link'=>Html::url(array('/tasks/default/index')));
 
-	echo PortletSidemenu::widget(array(
-		'sideMenu'=>$sideMenu,
+	echo app\modules\tasks\widgets\PortletToolbox::widget(array(
+		'menuItems'=>$sideMenu,
+		'enableAdmin' => false,
 	)); ?>	 
 	
 <?php Block::end(); ?>
@@ -46,7 +46,7 @@ use app\modules\workflow\widgets\PortletWorkflowLog;
 		<?= $form->field($model, 'status')->dropDownList(Workflow::getStatusOptions()); ?>
 	
 		<div class="form-group">
-			<?= Html::submitButton('<i class="icon-pencil"></i> '.$model->isNewRecord?Yii::t('app','Create'):Yii::t('app','Update'), array('class'=>'btn btn-success fg-color-white')); ?>
+			<?= Html::submitButton('<i class="icon-pencil"></i> '.$model->isNewRecord ? Yii::t('app','Create'):Yii::t('app','Update'), array('class'=>'btn btn-success fg-color-white')); ?>
 		</div>
 	<?php ActiveForm::end(); ?>
 

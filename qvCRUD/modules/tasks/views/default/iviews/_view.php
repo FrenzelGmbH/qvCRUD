@@ -32,6 +32,7 @@ use app\modules\tasks\models\Task;
         <i class="icon-quote-left"></i>&nbsp;
         <?= $model['content']; ?></td>
       <td>
+        <small>Status:</small>
         <span class="label label-info">
           <?= Html::encode($model['status']); ?>
         </span>
@@ -44,6 +45,11 @@ use app\modules\tasks\models\Task;
         <a href="<?= Task::getUrl($model['task_table'],$model['task_id'],'view'); ?>" class="btn btn-success btn-sm"> 
           <i class="icon-eye-open"> </i>
           <?= Yii::t('app','view'); ?> 
+        </a>
+
+        <a href="<?= Task::getUrl(Workflow::MODULE_TASKS,$model['id'],'update'); ?>" class="btn btn-info btn-sm"> 
+          <i class="icon-pencil"> </i>
+          <?= Yii::t('app','update'); ?> 
         </a>
       </td>
       <td></td>

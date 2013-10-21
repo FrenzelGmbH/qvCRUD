@@ -61,13 +61,21 @@ class Timetable extends \yii\db\ActiveRecord
 
     /**
      * Returns a string representation of the model's categories
-     *
      * @return string The category of this model as a string
      */
     public function getCategoryAsString()
     {
         $options = self::getCategoryOptions();
         return isset($options[$this->category]) ? Yii::t('app',$options[$this->category]) : '';
+    }
+
+    /**
+     * Returns a colorstring representation of the model's categories
+     * @return string The category of this model as a string
+     */
+    public function getCategoryAsColor()
+    {
+        return isset(Yii::$app->params[$this->category]['color']) ? Yii::$app->params[$this->category]['color'] : '#B2DFEE';
     }
 
 
@@ -481,6 +489,26 @@ class Timetable extends \yii\db\ActiveRecord
   {
       $date1 = new DateTime($year.Yii::$app->params['gbFiscalYearStart']);
       return static::find()->where('user_id='.$userId.' AND (date_start BETWEEN "'.$date1->format('Y-m-d H-i-s').'" AND "'.$date1->modify('+1 year')->format('Y-m-d H-i-s').'") AND category IN ('.self::CAT_HOLIDAY_BOOKING_START.', '.self::CAT_HOLIDAY_BOOKING.', '.self::CAT_HOLIDAY.', '.self::CAT_ILLNESS.','.self::CAT_MOVEMENT.','.self::CAT_WEDDING.','.self::CAT_OTHER.','.self::CAT_HOLIDAY_BOOKING_UPDATE.','.self::CAT_HOLIDAY_BOOKING_EXIT.','.self::CAT_HOLIDAY_BOOKING_ALIQUOTE.')'.' AND date_delete IS NULL')
+                      ->orderBy('date_start ASC')
+                      ->all();
+  }
+
+  /**
+  * Will return the current bookings for the mentioned periode and user
+  * @param integer userId for whom you wanna get bookings for
+  * @param integer category
+  * @param timestamp startdate 
+  */
+  public static function getCalendarBookings($userId = NULL, $category = self::CAT_TIMETRACK,$startdate = null)
+  {
+      if(!is_NULL($startdate)){
+        $date1 = new DateTime();
+        $date1->setTimestamp($startdate);
+        //$date1->modify('-1 month');
+      }
+      else
+        $date1 = new DateTime('today -1 month');
+      return static::find()->where('user_id='.$userId.' AND (date_start BETWEEN "'.$date1->format('Y-m-d H-i-s').'" AND "'.$date1->modify('+1 month')->format('Y-m-d H-i-s').'") AND category IN ('.$category.')'.' AND date_delete IS NULL')
                       ->orderBy('date_start ASC')
                       ->all();
   }

@@ -108,7 +108,7 @@ class TimetrackController extends Controller
 		$model = $this->findModel($id);
 
 		if ($model->load($_POST) && $model->save()) {
-			return $this->redirect(array('view', 'id' => $model->id));
+			return $this->redirect(array('/timetrack/default/calendar', 'start' => $model->date_start));
 		} else {
 			return $this->render('update', array(
 				'model' => $model,

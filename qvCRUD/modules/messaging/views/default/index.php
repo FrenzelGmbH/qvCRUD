@@ -1,12 +1,38 @@
-<div class="messaging-default-index">
-	<h1><?= $this->context->action->uniqueId; ?></h1>
+<?php
+
+use yii\helpers\Html;
+use yii\widgets\ListView;
+
+/**
+ * @var yii\base\View $this
+ * @var yii\data\ActiveDataProvider $dataProvider
+ * @var app\modules\messaging\models\MessagesSearch $searchModel
+ */
+
+$this->title = 'Messages';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="messages-index">
+
+	<h1><?= Html::encode($this->title); ?></h1>
+
+	<?php//= $this->render('_search', ['model' => $searchModel]); ?>
+
 	<p>
-		This is the view content for action "<?= $this->context->action->id; ?>".
-		The action belongs to the controller "<?= get_class($this->context); ?>"
-		in the "<?= $this->context->module->id; ?>" module.
+		<?= Html::a('Create Messages', ['create'], ['class' => 'btn btn-success']); ?>
 	</p>
-	<p>
-		You may customize this page by editing the following file:<br>
-		<code><?= __FILE__; ?></code>
-	</p>
+
+	<?= ListView::widget([
+		'dataProvider' => $dataProvider,
+		'itemView' => 'iviews/_view',
+		'layout'     => '<div class="box-header">{summary}</div>{items}{pager}',
+	]); 
+
+	/*
+	function ($model, $key, $index, $widget) {
+		return Html::a(Html::encode($model->id), ['view', 'id' => $model->id]);
+	},
+	*/
+	?>
+
 </div>
