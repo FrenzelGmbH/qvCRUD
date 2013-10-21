@@ -102,6 +102,9 @@ class Portlet extends Block
     $this->_beginTag=ob_get_contents();
 
     ob_clean();
+    if(Yii::$app->user->isAdmin && $this->enableAdmin){
+      Draggable::end();
+    }
   }
 
   /**
@@ -129,10 +132,7 @@ class Portlet extends Block
     echo $this->_beginTag;
     echo $content;
     echo '</div>';
-    echo Html::endTag($this->tagName);
-    if(Yii::$app->user->isAdmin && $this->enableAdmin){
-      Draggable::end();
-    }
+    echo Html::endTag($this->tagName);    
   }
 
   /**

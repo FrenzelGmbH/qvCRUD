@@ -1,8 +1,7 @@
 <?php
-namespace app\modules\timetrack\widgets;
+namespace app\modules\qlikview\qvdocs\widgets;
 
-use \Yii;
-
+use \yii;
 use yii\helpers\Html;
 use yii\base\Widget;
 use yii\widgets\Block;

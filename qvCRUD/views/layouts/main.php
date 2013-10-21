@@ -4,6 +4,9 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 
+use Yii2Tooltipster\Yii2Tooltipster;
+use \yii\bootstrap\Modal;
+
 /**
  * @var $this \yii\base\View
  * @var $content string
@@ -19,6 +22,21 @@ app\config\AppAsset::register($this);
 	<?php $this->head(); ?>
 </head>
 <body>
+
+<?= Yii2Tooltipster::widget(array('options'=>array('class'=>'.tipster'))); ?>
+
+<?php 
+	Modal::begin(array(
+	  'id'=>'applicationModal',
+	  'header' => '<h4><i class="icon-meter-medium"></i>Loading</h4>',
+	  'options' => array(
+	  		'width'=>'800px',
+	  ),
+	));
+	echo 'pls. wait one moment...';
+	Modal::end();
+?>
+
 <?php $this->beginBody(); ?>
 	<?php 
 
@@ -64,7 +82,7 @@ app\config\AppAsset::register($this);
 	//menu items visible for administrator
 	if(Yii::$app->user->isAdmin){
 		$subMenuAdmin[] = array('label'=>Yii::t('app','User'),'url' => array('/user/admin'));
-		$subMenuAdmin[] = array('label'=>Yii::t('app','Content'),'url' => array('/posts/indexadmin'));
+		$subMenuAdmin[] = array('label'=>Yii::t('app','Blog Management'),'url' => array('/posts/post/index'));
 		$subMenuAdmin[] = array('label'=>Yii::t('app','Revision'),'url' => array('/revision'));
 		$subMenuAdmin[] = array('label'=>Yii::t('app','File Manager'),'url' => array('/site/filemanager'));
 		

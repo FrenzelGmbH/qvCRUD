@@ -24,6 +24,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
 	echo app\modules\posts\widgets\PortletSidemenu::widget(array(
 		'sideMenu'=>$sideMenu,
+		'enableAdmin'=>false,
+		'htmlOptions'=>array('class'=>'nostyler'),
 	)); ?>	 
 	
 <?php yii\widgets\Block::end(); ?>
