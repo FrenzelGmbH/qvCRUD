@@ -32,6 +32,7 @@ $config = [
       'class' => 'app\modules\qlikview\qvdocs\qvdocs',
     ],
   ],
+  'extensions' => require(__DIR__ . '/../vendor/yii-extensions.php'), 
 	'components' => [
 		'request' => [
 			'enableCsrfValidation' => true,

@@ -45,8 +45,16 @@ app\config\AppAsset::register($this);
 	//$MenuItems[] = array('label' => 'Bedarfssammler', 'url' => array('/opportunities/index'));
 	$MenuItems[] = array('label' => '<i class="icon-home"></i> '.Yii::t('app','Home'), 'url' => Yii::$app->homeUrl);
 
+
+	//qlikview menu items visible for administrator
+	if(Yii::$app->user->isAdmin){
+		$qvMenuAdmin[] = array('label'=>'<i class="icon-file-text"></i> '.Yii::t('app','Documents'),'url' => array('/qvdocs/qvdocs/index'));
+		
+		$MenuItems[] = array('label' => '<i class="icon-gears"></i> '.Yii::t('app','QlikView'), 'url' => '','items' => $qvMenuAdmin);
+	};
+
 	//menu items visible for users
-	if(!Yii::$app->user->isGuest)
+	/*if(!Yii::$app->user->isGuest)
 	{
 
 		$rootNodes = app\modules\pages\models\Page::getRootNodes();
@@ -54,7 +62,7 @@ app\config\AppAsset::register($this);
 			 $subMenu[] = array('label'=>Yii::t('app',$Node->title),'url' => array('/pages/page/onlineview','id'=>$Node->id));
 
 		$MenuItems[] = array('label' => '<i class="icon-book"></i> '.Yii::t('app','Content'), 'url' => '#','items' => $subMenu);		
-	}
+	}*/
 
 	//menu items visible for toolbox users
 	if(!Yii::$app->user->isGuest)
@@ -72,12 +80,7 @@ app\config\AppAsset::register($this);
 		$MenuItems[] = array('label' => '<i class="icon-building"></i> Lagerplätze', 'url' => array('/storage/admin'));
 	};*/
 
-	//menu items visible for administrator
-	if(Yii::$app->user->isAdmin){
-		$qvMenuAdmin[] = array('label'=>'<i class="icon-file-text"></i> '.Yii::t('app','Documents'),'url' => array('/qvdocs/qvdocs/index'));
-		
-		$MenuItems[] = array('label' => '<i class="icon-gears"></i> '.Yii::t('app','QlikView'), 'url' => '','items' => $qvMenuAdmin);
-	};
+	
 
 	//menu items visible for administrator
 	if(Yii::$app->user->isAdmin){
