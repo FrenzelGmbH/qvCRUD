@@ -234,7 +234,7 @@ class UserLDAP extends \yii\db\ActiveRecord implements IdentityInterface
 	public static function validatePassword($password)
 	{    
     $options = \Yii::$app->params['ldapSettings'];
-    $ldap = new Zend\Ldap\Ldap();
+    $ldap = new Ldap();
     $acctname = \Yii::$app->params['ldapDomain'].$this->username;
 
     $ldap->setOptions($options);
@@ -242,9 +242,9 @@ class UserLDAP extends \yii\db\ActiveRecord implements IdentityInterface
         $ldap->bind($this->username, $password);
         $acctname = $ldap->getCanonicalAccountName($acctname);
         return true;
-    } catch (Zend\Ldap\Exception\LdapException $zle) {
+    } catch (\Zend\Ldap\Exception\LdapException $zle) {
         echo '  ' . $zle->getMessage() . "\n";
-        if ($zle->getCode() === Zend\Ldap\Exception\LdapException::LDAP_X_DOMAIN_MISMATCH) {
+        if ($zle->getCode() === \Zend\Ldap\Exception\LdapException::LDAP_X_DOMAIN_MISMATCH) {
             continue;
         }
     }
