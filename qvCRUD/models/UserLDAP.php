@@ -203,12 +203,13 @@ class UserLDAP extends \yii\db\ActiveRecord implements IdentityInterface
 
 	public static function findByUsername($username)
 	{
-		$user = static::find()->where('username=:username', array('username'=>$username))->one();
-		if ($user) {
-			return new self($user);
-		}
-		else
-			return null;
+		//$user = static::find()->where('username=:username', array('username'=>$username))->one();
+		//if ($user) {
+		//	return new self($user);
+		//}
+		//else
+		//	return null;
+    return new self();  
 	}
 
 	public function getId()
