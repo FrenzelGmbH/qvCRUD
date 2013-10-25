@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use \Yii;
 use yii\web\IdentityInterface;
 
 use \Zend\Ldap\Ldap;
@@ -211,11 +212,11 @@ class UserLDAP extends \yii\db\ActiveRecord implements IdentityInterface
     {
 			$user = new User();
       $user->username = $username;
-      $user->email = $username.'@'.\Yii::$app->params['ldapSettings']['host'];
+      $user->email = $username.'@'.Yii::$app->params['ldapSettings']['host'];
       $user->role = self::ROLE_USER;
       $user->save();
       //here I return the recently created user;)
-      return new self($user)
+      return new self($user);
     }
     return null;  
 	}
