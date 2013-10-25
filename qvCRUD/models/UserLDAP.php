@@ -223,7 +223,7 @@ class UserLDAP extends \yii\db\ActiveRecord implements IdentityInterface
 
 	public function validateAuthKey($authKey)
 	{
-		return prent::validateAuthKey($authKey);
+		return parent::validateAuthKey($authKey);
 	}
 
 	/**
@@ -231,15 +231,15 @@ class UserLDAP extends \yii\db\ActiveRecord implements IdentityInterface
 	* @param string the password to be validated
 	* @return boolean whether the password is valid
 	*/
-	public static function validatePassword($password)
+	public static function validatePassword($username,$password)
 	{    
     $options = \Yii::$app->params['ldapSettings'];
     $ldap = new Ldap();
-    $acctname = \Yii::$app->params['ldapDomain'].$this->username;
+    $acctname = \Yii::$app->params['ldapDomain'].$username;
 
     $ldap->setOptions($options);
     try {
-        $ldap->bind($this->username, $password);
+        $ldap->bind($username, $password);
         $acctname = $ldap->getCanonicalAccountName($acctname);
         return true;
     } catch (\Zend\Ldap\Exception\LdapException $zle) {
