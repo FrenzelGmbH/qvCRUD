@@ -48,7 +48,7 @@ class LoginForm extends Model
 	public function login()
 	{
 		if ($this->validate()) {
-			$user = UserLDAP::findByUsername($this->username);
+			//$user = UserLDAP::findByUsername($this->username);
 			Yii::$app->user->login($user, $this->rememberMe ? 3600*24*30 : 0);
 			return true;
 		} else {
