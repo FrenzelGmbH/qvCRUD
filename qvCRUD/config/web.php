@@ -49,7 +49,7 @@ $config = [
 		],
 		'user' => [
 			'class' => 'app\components\AppUser',
-			'identityClass' => 'app\models\User',
+			'identityClass' => 'app\models\UserLDAP',
 		],
 		'errorHandler' => [
 			'errorAction' => 'site/error',
