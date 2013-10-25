@@ -233,7 +233,7 @@ class UserLDAP extends \yii\db\ActiveRecord implements IdentityInterface
 
 	public function validateAuthKey($authKey)
 	{
-		return parent::validateAuthKey($authKey);
+		return $this->authKey === $authKey;
 	}
 
 	/**
