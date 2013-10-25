@@ -3,7 +3,7 @@
 namespace app\components;
 
 use \Yii;
-use yii\web\User;
+use yii\web\UserLDAP;
 
 class AppUser extends User
 {
