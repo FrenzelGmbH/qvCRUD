@@ -79,7 +79,7 @@ class UserLDAP extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return array(
-            array('username, password, email, role', 'required'),
+            array('username, email, role', 'required'),
             array('role, parent_user_id, backup_user_id, time_create, time_update, time_login', 'integer'),
             array('date_entry, date_exit', 'safe'),
             array('username', 'string', 'max' => 100),
@@ -203,13 +203,21 @@ class UserLDAP extends \yii\db\ActiveRecord implements IdentityInterface
 
 	public static function findByUsername($username)
 	{
-		//$user = static::find()->where('username=:username', array('username'=>$username))->one();
-		//if ($user) {
-		//	return new self($user);
-		//}
-		//else
-		//	return null;
-    return new self();  
+		$user = static::find()->where('username=:username', array('username'=>$username))->one();
+		if ($user) {
+			return new self($user);
+		}
+		else
+    {
+			$user = new User();
+      $user->username = $username;
+      $user->email = $username.'@'.\Yii::$app->params['ldapSettings']['host'];
+      $user->role = self::ROLE_USER;
+      $user->save();
+      //here I return the recently created user;)
+      return new self($user)
+    }
+    return null;  
 	}
 
 	public function getId()
