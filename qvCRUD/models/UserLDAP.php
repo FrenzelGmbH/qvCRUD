@@ -253,6 +253,12 @@ class UserLDAP extends \yii\db\ActiveRecord implements IdentityInterface
       
       if($connection){
         $bind = ldap_bind($connection,$settings['account_prefix'].$this->username,$password);
+        
+        /*$sr = ldap_search($connection,$dc_string,$filter,$LDAPFieldsToFind);
+        $info = ldap_get_entries($connection, $sr);
+        
+        var_dump($info);exit;*/
+        
         if(!$bind){
           $this->addError('password', 'Incorrect username or password.');
           return false;
