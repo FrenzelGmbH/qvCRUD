@@ -242,8 +242,9 @@ class UserLDAP extends \yii\db\ActiveRecord implements IdentityInterface
       $filter="($SearchField=$SearchFor*)"; //Wildcard is * Remove it if you want an exact match
 
       //new ldap logic
-      $options = \Yii::$app->params['ldapSettings'];
-      $dc_string = "DC=".implode(",",$options['domain_controllers']);
+      $settings = \Yii::$app->params['ldapSettings'];
+      $options = \Yii::$app->params['ldap'];
+      $dc_string = "DC=".implode(",",$settings['domain_controllers']);
       
       $connection = ldap_connect($options['host']) 
         or die("Could not connect to LDAP server.");
@@ -251,7 +252,7 @@ class UserLDAP extends \yii\db\ActiveRecord implements IdentityInterface
       ldap_set_option($connection, LDAP_OPT_REFERRALS, 0);
       
       if($connection){
-        $bind = ldap_bind($connection,$options['account_prefix'].$this->username,$password);
+        $bind = ldap_bind($connection,$settings['account_prefix'].$this->username,$password);
         if(!$bind){
           $this->addError('password', 'Incorrect username or password.');
         }

@@ -16,4 +16,9 @@ return [
     'use_tls' => false, // If SSL is true this MUST be false.
     'recursive_groups' => true,
   ],
+  'ldap'=>[
+    'host'=>'your.path.to.server.ac',
+    'ou'=>'users', //can be "people" or "users" depending on your ldap settings
+    'dc'=>array("dc1.domain.local"),
+  ]
 ];
