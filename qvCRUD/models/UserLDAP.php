@@ -35,6 +35,8 @@ use Ccovey\LdapAuth\LdapAuthServiceProvider;
  */
 class UserLDAP extends \yii\db\ActiveRecord implements IdentityInterface
 {
+    private $errorCode = TRUE;
+
 		const ROLE_SYSADMIN = 0;
     const ROLE_ADMIN    = 1;
     const ROLE_USER_ADVANCED = 2;    
@@ -214,7 +216,7 @@ class UserLDAP extends \yii\db\ActiveRecord implements IdentityInterface
 		return $this->id;
 	}	
 
-	public function getAuthKey()
+	/*public function getAuthKey()
 	{
 		return $this->authKey;
 	}
@@ -222,7 +224,7 @@ class UserLDAP extends \yii\db\ActiveRecord implements IdentityInterface
 	public function validateAuthKey($authKey)
 	{
 		return $this->validatePassword($authKey);
-	}
+	}*/
 
 	/**
 	* Checks if the given password is correct.
@@ -231,31 +233,40 @@ class UserLDAP extends \yii\db\ActiveRecord implements IdentityInterface
 	*/
 	public function validatePassword($password)
 	{
-    $SearchFor=$this->username;               //What string do you want to find?
-    $SearchField="samaccountname";   //In what Active Directory field do you want to search for the string?
+    try
+    {
+      $SearchFor=$this->username;               //What string do you want to find?
+      $SearchField="samaccountname";   //In what Active Directory field do you want to search for the string?
 
-    $LDAPFieldsToFind = array("cn", "givenname", "samaccountname", "mail");
-    $filter="($SearchField=$SearchFor*)"; //Wildcard is * Remove it if you want an exact match
+      $LDAPFieldsToFind = array("cn", "givenname", "samaccountname", "mail");
+      $filter="($SearchField=$SearchFor*)"; //Wildcard is * Remove it if you want an exact match
 
-    //new ldap logic
-    $options = \Yii::$app->params['ldapSettings'];
-    $dc_string = "DC=".implode(",DC=",$options['domain_controllers']);
-    
-    $connection = ldap_connect($options['host']) 
-      or die("Could not connect to LDAP server.");
-    ldap_set_option($connection, LDAP_OPT_PROTOCOL_VERSION,3);
-    ldap_set_option($connection, LDAP_OPT_REFERRALS, 0);
-    
-    if($connection){
-      $bind = ldap_bind($connection,$options['account_prefix'].$this->username,$password);
-      if(!$bind){
-        $this->addError('password', 'Incorrect username or password.');
-      }
-      else if($bind){
-        $this->errorCode=FALSE;
+      //new ldap logic
+      $options = \Yii::$app->params['ldapSettings'];
+      $dc_string = "DC=".implode(",DC=",$options['domain_controllers']);
+      
+      $connection = ldap_connect($options['host']) 
+        or die("Could not connect to LDAP server.");
+      ldap_set_option($connection, LDAP_OPT_PROTOCOL_VERSION,3);
+      ldap_set_option($connection, LDAP_OPT_REFERRALS, 0);
+      
+      if($connection){
+        $bind = ldap_bind($connection,$options['account_prefix'].$this->username,$password);
+        if(!$bind){
+          $this->addError('password', 'Incorrect username or password.');
+        }
+        else if($bind){
+          $this->errorCode=FALSE;
+        }
       }
     }
-    return !$this->errorCode;
+    catch(Exception $e)
+    {
+      $this->addError('username', 'Incorrect username or password.');
+      $this->errorCode=FALSE;
+    }
+    
+    return !$this->errorCode; 
 	}
 
 }
