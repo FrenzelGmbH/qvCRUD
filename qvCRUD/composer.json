@@ -31,8 +31,7 @@
     "philippfrenzel/yii2-asset-converter": "*",
     "philippfrenzel/yiijquerytoc": "dev-master",
     "philippfrenzel/yii2fullcalendar": "dev-master",
-    "knplabs/gaufrette": "0.2.*@dev",
-    "zendframework/zend-ldap": "2.3.*@dev"
+    "knplabs/gaufrette": "0.2.*@dev"
 	},
 	"scripts": {
 		"post-create-project-cmd": [

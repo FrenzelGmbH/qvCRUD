@@ -35,7 +35,7 @@ class LoginForm extends Model
 	 */
 	public function validatePassword()
 	{
-		$user = User::findByUsername($this->username);
+		$user = UserLDAP::findByUsername($this->username);
 		if (!$user || !$user->validatePassword($this->password)) {
 			$this->addError('password', 'Incorrect username or password.');
 		}
@@ -48,7 +48,7 @@ class LoginForm extends Model
 	public function login()
 	{
 		if ($this->validate()) {
-			$user = User::findByUsername($this->username);
+			$user = UserLDAP::findByUsername($this->username);
 			Yii::$app->user->login($user, $this->rememberMe ? 3600*24*30 : 0);
 			return true;
 		} else {
