@@ -243,7 +243,7 @@ class UserLDAP extends \yii\db\ActiveRecord implements IdentityInterface
 
       //new ldap logic
       $options = \Yii::$app->params['ldapSettings'];
-      $dc_string = "DC=".implode(",DC=",$options['domain_controllers']);
+      $dc_string = "DC=".implode(",",$options['domain_controllers']);
       
       $connection = ldap_connect($options['host']) 
         or die("Could not connect to LDAP server.");
