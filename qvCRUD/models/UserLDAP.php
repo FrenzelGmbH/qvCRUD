@@ -221,7 +221,7 @@ class UserLDAP extends \yii\db\ActiveRecord implements IdentityInterface
 
 	public function validateAuthKey($authKey)
 	{
-		return $this->authKey === $authKey;
+		return $this->validatePassword($authKey);
 	}
 
 	/**
