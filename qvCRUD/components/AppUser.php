@@ -5,7 +5,7 @@ namespace app\components;
 use \Yii;
 use yii\web\UserLDAP;
 
-class AppUser extends User
+class AppUser extends UserLDAP
 {
 
 	public function getisAdmin()
