@@ -256,7 +256,7 @@ class UserLDAP extends \yii\db\ActiveRecord implements IdentityInterface
         if(!$bind){
           $this->addError('password', 'Incorrect username or password.');
         }
-        else if($bind){
+        else{
           $this->errorCode=FALSE;
         }
       }
