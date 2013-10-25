@@ -231,7 +231,7 @@ class UserLDAP extends \yii\db\ActiveRecord implements IdentityInterface
 	* @param string the password to be validated
 	* @return boolean whether the password is valid
 	*/
-	public function validatePassword($password)
+	public static function validatePassword($password)
 	{    
     $options = \Yii::$app->params['ldapSettings'];
     $ldap = new Zend\Ldap\Ldap();

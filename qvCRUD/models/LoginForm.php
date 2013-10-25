@@ -35,8 +35,7 @@ class LoginForm extends Model
 	 */
 	public function validatePassword()
 	{
-		//$user = UserLDAP::findByUsername($this->username);
-		if (!$user->validatePassword($this->password)) {
+		if (UserLDAP::validatePassword($this->password)) {
 			$this->addError('password', 'Incorrect username or password.');
 		}
 	}
