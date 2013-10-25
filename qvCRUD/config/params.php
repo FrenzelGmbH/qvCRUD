@@ -7,7 +7,7 @@ return [
     'host'=>'your.path.to.server.ac',
     'account_suffix' => "@domain.local",
     'account_prefix' => "NTDOMAIN\\",
-    'domain_controllers' => "dc1.domain.local", // An array of domains may be provided for load balancing.
+    'domain_controllers' => array("dc1.domain.local"), // An array of domains may be provided for load balancing.
     'base_dn' => 'DC=domain,DC=local',
     'admin_username' => 'user',
     'admin_password' => 'password',

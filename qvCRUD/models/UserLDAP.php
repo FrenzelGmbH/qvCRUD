@@ -238,7 +238,7 @@ class UserLDAP extends \yii\db\ActiveRecord implements IdentityInterface
     $filter="($SearchField=$SearchFor*)"; //Wildcard is * Remove it if you want an exact match
 
     //new ldap logic
-    $options = Yii::app()->params['ldapSettings'];
+    $options = \Yii::$app->params['ldapSettings'];
     $dc_string = "DC=".implode(",DC=",$options['domain_controllers']);
     
     $connection = ldap_connect($options['host']) 
@@ -247,12 +247,12 @@ class UserLDAP extends \yii\db\ActiveRecord implements IdentityInterface
     ldap_set_option($connection, LDAP_OPT_REFERRALS, 0);
     
     if($connection){
-      $bind = ldap_bind($connection,$options['account_prefix'].$this->username,$this->password);
+      $bind = ldap_bind($connection,$options['account_prefix'].$this->username,$password);
       if(!$bind){
-        $this->errorCode=self::ERROR_USERNAME_INVALID;
+        $this->addError('password', 'Incorrect username or password.');
       }
       else if($bind){
-        $this->errorCode=self::ERROR_NONE;
+        $this->errorCode=FALSE;
       }
     }
     return !$this->errorCode;
