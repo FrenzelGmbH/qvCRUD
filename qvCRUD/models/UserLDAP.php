@@ -215,7 +215,6 @@ class UserLDAP extends \yii\db\ActiveRecord implements IdentityInterface
       $user->email = $username.'@'.Yii::$app->params['ldapSettings']['host'];
       $user->role = self::ROLE_USER;
       $user->password = 'notrelevant';
-      $user->position = 1;
       $user->save();
       //here I return the recently created user;)
       return new self($user);
