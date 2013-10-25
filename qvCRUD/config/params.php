@@ -4,7 +4,6 @@ return [
 	'adminEmail' => 'philipp@frenzel.net',
   'QlikViewPrjFile' => 'QlikViewProject.xml',
   'ldapSettings' => [
-    'host'=>'your.path.to.server.ac',
     'account_suffix' => "@domain.local",
     'account_prefix' => "NTDOMAIN\\",
     'domain_controllers' => array("dc1.domain.local"), // An array of domains may be provided for load balancing.
