@@ -4,7 +4,7 @@ namespace app\models;
 
 use yii\web\IdentityInterface;
 
-use Ccovey\LdapAuth\LdapAuthServiceProvider;
+use \Zend\Ldap\Ldap;
 
 /**
  * This is the model class for table "tbl_user".
@@ -232,48 +232,22 @@ class UserLDAP extends \yii\db\ActiveRecord implements IdentityInterface
 	* @return boolean whether the password is valid
 	*/
 	public function validatePassword($password)
-	{
-    try
-    {
-      $SearchFor=$this->username;               //What string do you want to find?
-      $SearchField="samaccountname";   //In what Active Directory field do you want to search for the string?
+	{    
+    $options = \Yii::$app->params['ldapSettings'];
+    $ldap = new Zend\Ldap\Ldap();
+    $acctname = \Yii::$app->params['ldapDomain'].$this->username;
 
-      $LDAPFieldsToFind = array("cn", "givenname", "samaccountname", "mail");
-      $filter="($SearchField=$SearchFor*)"; //Wildcard is * Remove it if you want an exact match
-
-      //new ldap logic
-      $settings = \Yii::$app->params['ldapSettings'];
-      $options = \Yii::$app->params['ldap'];
-      $dc_string = "DC=".implode(",DC=",$settings['domain_controllers']);
-      
-      $connection = ldap_connect($options['host']) 
-        or die("Could not connect to LDAP server.");
-      ldap_set_option($connection, LDAP_OPT_PROTOCOL_VERSION,3);
-      ldap_set_option($connection, LDAP_OPT_REFERRALS, 0);
-      
-      if($connection){
-        $bind = ldap_bind($connection,$settings['account_prefix'].$this->username,$password);
-        
-        /*$sr = ldap_search($connection,$dc_string,$filter,$LDAPFieldsToFind);
-        $info = ldap_get_entries($connection, $sr);
-        
-        var_dump($info);exit;*/
-        
-        if(!$bind){
-          $this->addError('password', 'Incorrect username or password.');
-          return false;
+    $ldap->setOptions($options);
+    try {
+        $ldap->bind($this->username, $password);
+        $acctname = $ldap->getCanonicalAccountName($acctname);
+        return true;
+    } catch (Zend\Ldap\Exception\LdapException $zle) {
+        echo '  ' . $zle->getMessage() . "\n";
+        if ($zle->getCode() === Zend\Ldap\Exception\LdapException::LDAP_X_DOMAIN_MISMATCH) {
+            continue;
         }
-        else{
-          return true;
-        }
-      }
     }
-    catch(Exception $e)
-    {
-      $this->addError('username', 'Incorrect username or password.');      
-    }
-    
-    return FALSE; 
 	}
 
 }
