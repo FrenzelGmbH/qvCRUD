@@ -47,7 +47,7 @@ app\config\AppAsset::register($this);
 
 
 	//qlikview menu items visible for administrator
-	if(Yii::$app->user->isAdmin){
+	if(Yii::$app->user->isUser){
 		$qvMenuAdmin[] = array('label'=>'<i class="icon-file-text"></i> '.Yii::t('app','Documents'),'url' => array('/qvdocs/qvdocs/index'));
 		
 		$MenuItems[] = array('label' => '<i class="icon-gears"></i> '.Yii::t('app','QlikView'), 'url' => '','items' => $qvMenuAdmin);
@@ -81,9 +81,8 @@ app\config\AppAsset::register($this);
 	};*/
 
 	
-
 	//menu items visible for administrator
-	if(Yii::$app->user->isAdmin){
+	if(Yii::$app->user->isUser){
 		$subMenuAdmin[] = array('label'=>Yii::t('app','User'),'url' => array('/user/admin'));
 		$subMenuAdmin[] = array('label'=>Yii::t('app','Blog Management'),'url' => array('/posts/post/index'));
 		$subMenuAdmin[] = array('label'=>Yii::t('app','Revision'),'url' => array('/revision'));
