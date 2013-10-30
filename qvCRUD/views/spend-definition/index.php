@@ -22,7 +22,12 @@ $this->params['breadcrumbs'][] = $this->title;
 		<?= Html::a('Create SpendDefinition', ['create'], ['class' => 'btn btn-success']) ?>
 	</p>
 
-	<?php echo GridView::widget([
+	<?php 
+
+		foreach($dataProvider AS $model)
+			echo $model->SpendDefID . ' : ' . $model->SpendDefDescription .'<br/>';
+
+	/*echo GridView::widget([
 		'dataProvider' => $dataProvider,
 		//'filterModel' => $searchModel,
 		'columns' => [
@@ -36,6 +41,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 			['class' => 'yii\grid\ActionColumn'],
 		],
-	]); ?>
+	]);*/ ?>
 
 </div>
