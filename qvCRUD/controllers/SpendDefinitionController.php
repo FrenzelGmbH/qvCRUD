@@ -33,9 +33,7 @@ class SpendDefinitionController extends Controller
 	public function actionIndex()
 	{
 		$searchModel = new SpendDefinitionSearch;
-		$dataProvider = SpendDefinition::find()->all();
-		
-		var_dump($dataProvider);
+		$dataProvider = $searchModel->search($_GET);
 
 		return $this->render('index', [
 			'dataProvider' => $dataProvider,

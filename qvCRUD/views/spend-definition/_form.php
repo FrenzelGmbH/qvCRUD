@@ -14,11 +14,11 @@ use yii\widgets\ActiveForm;
 
 	<?php $form = ActiveForm::begin(); ?>
 
+		<?= $form->field($model, 'SpendDefID')->textInput() ?>
+
 		<?= $form->field($model, 'ValidFrom')->textInput() ?>
 
 		<?= $form->field($model, 'IsValid')->textInput() ?>
-
-		<?= $form->field($model, 'SpendDefID')->textInput() ?>
 
 		<?= $form->field($model, 'SpendDefDescription')->textInput() ?>
 
