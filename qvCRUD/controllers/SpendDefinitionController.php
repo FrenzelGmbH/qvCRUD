@@ -35,9 +35,7 @@ class SpendDefinitionController extends Controller
 		//$searchModel = new SpendDefinitionSearch;
 		//$dataProvider = $searchModel->search($_GET);
 		
-		$data = SpendDefinition::find()
-						->select('SpendDefID, SpendDefDescription')
-            ->All();
+		$data = SpendDefinition::find()->All();
 
 		return $this->render('index', [
 			'dataProvider' => $data,
