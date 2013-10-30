@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	<?php 
 
 		foreach($dataProvider AS $value)
-			var_dump($value->SpendDefID);
+			var_dump($value->_attributes['SpendDefID']);
 			//echo $value->SpendDefID . ' : ' . $value->SpendDefDescription . '<br/>';
 
 	/*echo GridView::widget([
