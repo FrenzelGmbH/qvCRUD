@@ -32,12 +32,16 @@ class SpendDefinitionController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$searchModel = new SpendDefinitionSearch;
-		$dataProvider = $searchModel->search($_GET);
+		//$searchModel = new SpendDefinitionSearch;
+		//$dataProvider = $searchModel->search($_GET);
+		
+		$data = SpendDefinition::find()
+						->select('SpendDefID, SpendDefDescription')
+            ->All();
 
 		return $this->render('index', [
-			'dataProvider' => $dataProvider,
-			'searchModel' => $searchModel,
+			'dataProvider' => $data,
+			//'searchModel' => $searchModel,
 		]);
 	}
 

@@ -24,15 +24,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
 	<?php echo GridView::widget([
 		'dataProvider' => $dataProvider,
-		'filterModel' => $searchModel,
+		//'filterModel' => $searchModel,
 		'columns' => [
 			['class' => 'yii\grid\SerialColumn'],
 
-			'ValidFrom',
-			'IsValid',
+			//'ValidFrom',
+			//'IsValid',
 			'SpendDefID',
 			'SpendDefDescription',
-			'Parent',
+			//'Parent',
 
 			['class' => 'yii\grid\ActionColumn'],
 		],
